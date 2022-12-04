@@ -118,6 +118,17 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment:CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "todos of User: $userIdValue",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                )
+              ],
+            ),
             for (var i = 0; i < 20; i++)
               Flexible(
                 child: FutureBuilder<List<Todo>>(
