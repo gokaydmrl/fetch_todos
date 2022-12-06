@@ -22,7 +22,7 @@ class _TodoListState extends State<TodoList> {
         if (snapshot.hasData) {
           return Column(
             children: [
-              for (var i = 0; i < 20; i++)
+              for (var i = 0; i < snapshot.data!.length; i++)
                 SingleChildScrollView(
                   scrollDirection: Axis.vertical,
                   child: Row(
