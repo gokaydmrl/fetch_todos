@@ -16,40 +16,37 @@ class _TodoListState extends State<TodoList> {
   Widget build(BuildContext context) {
     var fetchAsyncTodos = context.watch<FetchAsyncTodos>();
     final rez = fetchAsyncTodos.getAs();
-    return Consumer<FetchAsyncTodos>(
-        builder: (context, fetchAsyncTodos, child) {
-      return FutureBuilder<List<Todo>>(
-        future: rez,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Column(
-              children: [
-                for (var i = 0; i < 20; i++)
-                  SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.max,
-                      verticalDirection: VerticalDirection.down,
-                      children: [
-                        Icon(snapshot.data![i].completed
-                            ? Icons.done_all_outlined
-                            : Icons.not_interested),
-                        Text(
-                          snapshot.data![i].title,
-                          overflow: TextOverflow.visible,
-                        ),
-                      ],
-                    ),
+    return FutureBuilder<List<Todo>>(
+      future: rez,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Column(
+            children: [
+              for (var i = 0; i < 20; i++)
+                SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
+                    verticalDirection: VerticalDirection.down,
+                    children: [
+                      Icon(snapshot.data![i].completed
+                          ? Icons.done_all_outlined
+                          : Icons.not_interested),
+                      Text(
+                        snapshot.data![i].title,
+                        overflow: TextOverflow.visible,
+                      ),
+                    ],
                   ),
-              ],
-            );
-          } else if (snapshot.hasError) {
-            return Text("${snapshot.error}");
-          }
-          return const CircularProgressIndicator();
-        },
-      );
-    });
+                ),
+            ],
+          );
+        } else if (snapshot.hasError) {
+          return Text("${snapshot.error}");
+        }
+        return const CircularProgressIndicator();
+      },
+    );
   }
 }

@@ -20,13 +20,11 @@ class _HeaderState extends State<Header> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Consumer<FetchAsyncTodos>(
-          builder: (context, fetchAsyncTodos, child) => Text(
-            "todos of User: ${fetchAsyncTodos.userId}",
-            textAlign: TextAlign.start,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-          ),
-        )
+        Text(
+          "todos of User ${context.watch<FetchAsyncTodos>().userId}",
+          textAlign: TextAlign.start,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+        ),
       ],
     );
   }
